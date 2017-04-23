@@ -1,54 +1,44 @@
+import axios from 'axios'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
-export const COUNTER_DOUBLE_ASYNC = 'COUNTER_DOUBLE_ASYNC'
+export const FETCH_COUNTRIES = 'FETCH_COUNTRIES'
+export const API_URL = 'https://restcountries.eu/rest/v2'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function increment (value = 1) {
-  return {
-    type    : COUNTER_INCREMENT,
-    payload : value
-  }
-}
-
-/*  This is a thunk, meaning it is a function that immediately
-    returns a function for lazy evaluation. It is incredibly useful for
-    creating async actions, especially when combined with redux-thunk! */
-
-export const doubleAsync = () => {
-  return (dispatch, getState) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        dispatch({
-          type    : COUNTER_DOUBLE_ASYNC,
-          payload : getState().counter
-        })
-        resolve()
-      }, 200)
+export function fetchCountries() {
+  return function(dispatch) {
+    axios.get(`${API_URL}/all`)
+    .then(response => {
+      dispatch({
+        type: FETCH_COUNTRIES,
+        payload: response.data
+      });
+    })
+    .catch((error) => {
+      console.log(error);
     })
   }
 }
 
 export const actions = {
-  increment,
-  doubleAsync
+  fetchCountries
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2
+  [FETCH_COUNTRIES] : (state, action) => state.concat(action.payload)
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
+const initialState = []
 export default function countriesReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 

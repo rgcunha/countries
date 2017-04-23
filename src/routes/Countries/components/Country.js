@@ -5,13 +5,13 @@ import './Country.scss'
 export const Country = (props) => (
   <div className="country">
     <div className="row">
-      <div className="col col-md-4">
-        <img src={props.country.image}/>
+      <div className="col col-md-2">
+        <img src={props.country.flag} className="country__flag"/>
       </div>
-      <div className="col col-md-8">
-        <h1>{props.country.name}</h1>
-        <label>Population: {props.country.population}</label>
-        <label>Area: {props.country.area}</label>
+      <div className="col col-md-10">
+        <h2>{props.country.name}</h2>
+        <p>Population: {props.country.population}</p>
+        <p>Area: {props.country.area}</p>
       </div>
     </div>
   </div>

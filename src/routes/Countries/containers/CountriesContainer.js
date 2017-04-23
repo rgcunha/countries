@@ -1,14 +1,13 @@
 import { connect } from 'react-redux'
-import { increment, doubleAsync } from '../modules/countries'
-import Countries from '../components/Countries'
+import { fetchCountries } from '../modules/countries'
+import FilterableCountries from '../components/FilterableCountries'
 
 const mapDispatchToProps = {
-  increment : () => increment(1),
-  doubleAsync
+  fetchCountries
 }
 
 const mapStateToProps = (state) => ({
   countries : state.countries
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Countries)
+export default connect(mapStateToProps, mapDispatchToProps)(FilterableCountries)
