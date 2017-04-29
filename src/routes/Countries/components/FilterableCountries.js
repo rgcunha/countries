@@ -4,16 +4,16 @@ import { Countries } from './Countries'
 import { SearchBar } from './SearchBar'
 
 class FilterableCountries extends React.Component {
-  componentWillMount() {
-    this.props.fetchCountries();
+  componentWillMount () {
+    this.props.fetchCountries()
   }
 
-  render() {
+  render () {
     return (
-      <div className="filterable-countries">
+      <div className='filterable-countries'>
         <h1>Countries</h1>
-        <SearchBar fetch={this.props.fetchCountries}></SearchBar>
-        <Countries countries={this.props.countries}></Countries>
+        <SearchBar fetch={this.props.fetchCountries} />
+        <Countries countries={this.props.countries} />
       </div>
     )
   }

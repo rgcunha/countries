@@ -19,6 +19,6 @@ export default (store) => ({
       cb(null, Countries)
 
     /* Webpack named bundle   */
-  }, 'countries')
+    }, 'countries')
   }
 })

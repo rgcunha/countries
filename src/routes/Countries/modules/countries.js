@@ -9,17 +9,17 @@ export const API_URL = 'https://restcountries.eu/rest/v2'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function fetchCountries() {
-  return function(dispatch) {
+export function fetchCountries () {
+  return function (dispatch) {
     axios.get(`${API_URL}/all`)
     .then(response => {
       dispatch({
         type: FETCH_COUNTRIES,
         payload: response.data
-      });
+      })
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error)
     })
   }
 }
